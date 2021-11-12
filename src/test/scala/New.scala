@@ -30,7 +30,16 @@ case class ProductParser()  {
   def parse(htmlContent: String): ResultObject= {
     val doc   = Jsoup.parse(htmlContent)
     val title = doc.select("h1").text()
-    val Dict = doc.select("table")
+//    val Dict = doc.select("table:nth-child(2)")
+    val Dict = doc.select("table:nth-child(2)").asScala.map{
+      el =>
+        val t1 = el.select("thead")
+        val t2 = el.select("tbody")
+        t2
+//        println(t1)
+//        println(t2)
+
+    }
 
     println(Dict)
     ResultObject(title)
@@ -50,8 +59,7 @@ object New extends App {
   val result  = Await.result(resultFut, Duration.Inf)
 
   println("-"*50)
-  println("Product Name : " + result.title)
-  print("this is for checking")
-  print("This is anthor one for dinesh")
+//  println("Product Name : " + result.title)
+
 
 }
