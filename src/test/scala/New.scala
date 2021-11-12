@@ -31,17 +31,17 @@ case class ProductParser()  {
     val doc   = Jsoup.parse(htmlContent)
     val title = doc.select("h1").text()
 //    val Dict = doc.select("table:nth-child(2)")
-    val Dict = doc.select("table:nth-child(2)").asScala.map{
-      el =>
-        val t1 = el.select("thead")
-        val t2 = el.select("tbody")
-        t2
-//        println(t1)
-//        println(t2)
+    val table_head = doc.select("table:nth-child(2) thead tr th")
+    val table_body = doc.select("table:nth-child(2) tbody tr td")
 
-    }
+    val x = table_head.asScala.map(el => el.text()).toList
+    val y = table_body.asScala.map(el => el.text()).toList
+    val res = (x zip y).toMap
 
-    println(Dict)
+//    println(x)
+//    println(y)
+//    println(res)
+    res.map(println)
     ResultObject(title)
   }
 }
