@@ -52,5 +52,6 @@ object New extends App {
   println("-"*50)
   println("Product Name : " + result.title)
   print("this is for checking")
+  print("This is anthor one for dinesh")
 
 }
