@@ -3,7 +3,6 @@ import akka.http.scaladsl.Http
 import akka.http.scaladsl.model.HttpRequest
 import akka.protobufv3.internal.TextFormat.Printer
 import org.jsoup.Jsoup
-
 import javax.management.Query.attr
 import scala.concurrent.{Await, ExecutionContext, ExecutionContextExecutor, Future}
 import scala.concurrent.duration.{Duration, DurationInt}
@@ -41,8 +40,19 @@ case class ProductParser()  {
 //    println(x)
 //    println(y)
 //    println(res)
-    res.map(println)
+//    res.map(println)
+//    val str ="4% Cap of $1,000.00"
+    res.map(el => {
+      regex(el._1,el._2)
+    })
+
+    def regex(str1:String,str:String){
+      val pattern = """(\d+(.\d+)?)%""".r
+      val result = pattern.findAllIn(str).toList
+      println(result)
+    }
     ResultObject(title)
+
   }
 }
 
@@ -60,6 +70,4 @@ object New extends App {
 
   println("-"*50)
 //  println("Product Name : " + result.title)
-
-
 }
