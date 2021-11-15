@@ -59,6 +59,7 @@ object New extends App {
   val result  = Await.result(resultFut, Duration.Inf)
 
   println("-"*50)
+  print('this is added by me')
 //  println("Product Name : " + result.title)
 
 
